@@ -66,7 +66,12 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-END
   apt update
   apt install -y apache2
+  apt install -y python3-pip
+  pip install pandas
+  pip install folium
   cp -r /vagrant/webcontent/* /var/www/html/
+  cd /var/www/html/
+  python3 FlightMap.py
   echo "MyUbuntu provisioned at $(date). Welcome back!"
   END
 end
